@@ -35,12 +35,19 @@ jobs:
               -d testData.csv \
               -r cli,htmlextra
 
-      - name: Newman Report
+      - name : Newman Report
         if: always()
         uses: actions/upload-artifact@v7.0.1
         with: 
           name: Newman Report
           path: newman/*.html
+
+      - name : Creating GitHub page branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: newman/
               
               
         
